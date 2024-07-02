@@ -24,7 +24,7 @@ int main() {
 
         if(um.count(k-now)==0) continue;
 
-        if(now == k-now) res+= (um[k-now] - 1);
+        if(now == k-now) res+= (um[now] *(um[k-now] - 1));
         else res+= (um[now] * um[k-now]);
     }
 
