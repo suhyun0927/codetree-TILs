@@ -24,7 +24,8 @@ int main() {
 
         if(um.count(k-now)==0) continue;
 
-        res+= (um[now] * um[k-now]);
+        if(now == k-now) res+= (um[k-now] - 1);
+        else res+= (um[now] * um[k-now]);
     }
 
     cout << res/2;
