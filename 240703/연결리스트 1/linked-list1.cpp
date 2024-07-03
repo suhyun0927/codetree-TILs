@@ -77,18 +77,28 @@ int main() {
         }
         else if (num == 3) {
             if (cur->pre != NULL) {
-                cur->next = cur;
-                cur->pre = cur->pre->pre;
-                cur = cur->pre->next;
+                Node* n2 = new Node();
+                n2->pre = cur->pre;
+                n2->next = cur->next;
+                n2->str = cur->str;
+
+                cur->pre = n2->pre->pre;
+                cur = n2->pre;
+                cur->next = n2;
             }
 
             printCur(cur);
         }
         else { // num == 4
             if (cur->next != NULL) {
-                cur->next = cur->next->next;
-                cur->pre = cur;
-                cur = cur->next->pre;
+                Node* n2 = new Node();
+                n2->pre = cur->pre;
+                n2->next = cur->next;
+                n2->str = cur->str;
+
+                cur->pre = n2;
+                cur = n2->next;
+                cur->next = n2->next->next;
             }
 
             printCur(cur);
