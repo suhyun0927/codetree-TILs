@@ -3,107 +3,103 @@
 
 using namespace std;
 
-struct Node{
-    string str;
-    Node* pre;
-    Node* next;
+struct Node {
+	string str;
+	Node* pre;
+	Node* next;
 };
 
 void printCur(Node* cur) {
-    if (cur->pre == NULL) cout << "(Null) ";
-    else cout << cur->pre->str << " ";
+	if (cur->pre == NULL) cout << "(Null) ";
+	else cout << cur->pre->str << " ";
 
-    cout << cur->str << " ";
+	cout << cur->str << " ";
 
-    if (cur->next == NULL) cout << "(Null)\n";
-    else cout << cur->next->str << "\n";
+	if (cur->next == NULL) cout << "(Null)\n";
+	else cout << cur->next->str << "\n";
 }
 
 int main() {
-    
-    // S_init
-    string init;
-    cin >> init;
 
-    Node* cur= new Node();
-    cur->str = init;
+	// S_init
+	string init;
+	cin >> init;
 
-    int N;
-    cin >> N;
+	Node* cur = new Node();
+	cur->str = init;
 
-    for (int i = 0; i < N; i++) {
-        int num;
-        cin >> num;
+	int N;
+	cin >> N;
 
-        if (num == 1) {
-            string tmp;
-            cin >> tmp;
+	for (int i = 0; i < N; i++) {
+		int num;
+		cin >> num;
 
-            Node* n2 = new Node();
-            n2->str = tmp;
+		if (num == 1) {
+			string tmp;
+			cin >> tmp;
 
-            if (cur->pre == NULL) {
-                n2->next = cur;
-                cur->pre = n2;
-            }
-            else {
-                n2->pre = cur->pre;
-                cur->pre->next = n2;
-                cur->pre = n2;
-                n2->next = cur;
-            }
-            
-            printCur(cur);
-        }
-        else if (num == 2) {
-            string tmp;
-            cin >> tmp;
+			Node* n2 = new Node();
+			n2->str = tmp;
 
-            Node* n2 = new Node();
-            n2->str = tmp;
+			if (cur->pre == NULL) {
+				n2->next = cur;
+				cur->pre = n2;
+			}
+			else {
+				n2->pre = cur->pre;
+				cur->pre->next = n2;
+				cur->pre = n2;
+				n2->next = cur;
+			}
+		}
+		else if (num == 2) {
+			string tmp;
+			cin >> tmp;
 
-            if (cur->next == NULL) {
-                n2->pre = cur;
-                cur->next = n2;
-            }
-            else {
-                n2->next = cur->next;
-                cur->next->pre = n2;
-                cur->next = n2;
-                n2->pre = cur;
-            }
-            
-            printCur(cur);
-        }
-        else if (num == 3) {
-            if (cur->pre != NULL) {
-                Node* n2 = new Node();
-                n2->pre = cur->pre;
-                n2->next = cur->next;
-                n2->str = cur->str;
+			Node* n2 = new Node();
+			n2->str = tmp;
 
-                cur->pre = n2->pre->pre;
-                cur = n2->pre;
-                cur->next = n2;
-            }
+			if (cur->next == NULL) {
+				n2->pre = cur;
+				cur->next = n2;
+			}
+			else {
+				n2->next = cur->next;
+				cur->next->pre = n2;
+				cur->next = n2;
+				n2->pre = cur;
+			}
+		}
+		else if (num == 3) {
+			if (cur->pre != NULL) {
+				cur = cur->pre;
+				/*Node* n2 = new Node();
+				n2->pre = cur->pre;
+				n2->next = cur->next;
+				n2->str = cur->str;
 
-            printCur(cur);
-        }
-        else { // num == 4
-            if (cur->next != NULL) {
-                Node* n2 = new Node();
-                n2->pre = cur->pre;
-                n2->next = cur->next;
-                n2->str = cur->str;
+				cur->pre = n2->pre->pre;
+				cur = n2->pre;
+				cur->next = n2;*/
+			}
+		}
+		else { // num == 4
+			if (cur->next != NULL) {
+				cur = cur->next;
+				/*Node* n2 = new Node();
+				n2->pre = cur->pre;
+				n2->next = cur->next;
+				n2->str = cur->str;
 
-                cur->pre = n2;
-                cur = n2->next;
-                cur->next = n2->next->next;
-            }
+				cur->pre = n2;
+				cur = n2->next;
+				cur->next = n2->next->next;*/
+			}
+		}
 
-            printCur(cur);
-        }
-    }
+		printCur(cur);
+	}
 
-    return 0;
+	return 0;
 }
